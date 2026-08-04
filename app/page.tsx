@@ -7,6 +7,16 @@ export const metadata = {
     "宮古島でクラシックミニを1日から。伊良部大橋も東平安名崎も、屋根の低い小さな車で走ると景色が変わります。",
 };
 
+// 背景スライドショーの写真。並び順が表示順(sakuraが最初=スポットライト演出で最初に照らされる1枚)。
+const HERO_PHOTOS = [
+  { src: "/hero-sakura.jpg", position: "50% 42%" },
+  { src: "/hero-car.jpg", position: "56% 50%" },
+  { src: "/IMG_0638.JPG", position: "55% 55%" },
+  { src: "/IMG_0642.JPG", position: "55% 58%" },
+  { src: "/IMG_0644.JPG", position: "45% 55%" },
+  { src: "/IMG_0645.JPG", position: "42% 52%" },
+];
+
 export default function Home() {
   return (
     <div className={styles.homePage}>
@@ -23,17 +33,28 @@ export default function Home() {
       <section className={styles.heroSplit}>
         <div className={styles.heroLeft}>
           <span className={styles.eyebrow}>RENT A CLASSIC MINI · MIYAKOJIMA</span>
+          <BookingWidget />
           <h1 className={styles.headline}>
             屋根が低いと、
             <br />
             季節に<em>いちばん</em>近い。
           </h1>
-          <BookingWidget />
         </div>
 
         <div className={styles.heroRight}>
           <div className={styles.heroBgWrap} aria-hidden="true">
-            <div className={styles.pageBg} />
+            <div className={styles.pageBgSlides}>
+              {HERO_PHOTOS.map((photo) => (
+                <div
+                  key={photo.src}
+                  className={styles.pageBgSlide}
+                  style={{
+                    backgroundImage: `url(${photo.src})`,
+                    backgroundPosition: photo.position,
+                  }}
+                />
+              ))}
+            </div>
             <div className={styles.spotlightBeam} />
             <div className={styles.spotlightGround} />
             <div className={styles.heroBlackout} />

@@ -45,7 +45,9 @@ export default function BookingWidget() {
   }
 
   const soldOut = remaining !== null && remaining <= 0;
-  const canProceed = remaining !== null && !soldOut;
+  // 在庫取得に失敗した(remaining===null)場合はブロックしない。実際の空き確認は
+  // POST /api/reservations 側でも行われるため、ここで弾くのはUXの都合のみ。
+  const canProceed = !soldOut;
 
   if (step === "customer") {
     return (
