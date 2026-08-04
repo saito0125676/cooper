@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: rental-car-demo-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: rentalcar
+      POSTGRES_PASSWORD: rentalcar
+      POSTGRES_DB: rentalcar
+    ports:
+      - "5432:5432"
+    volumes:
+      - rental-car-demo-pgdata:/var/lib/postgresql/data
+
+volumes:
+  rental-car-demo-pgdata:

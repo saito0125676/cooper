@@ -1,0 +1,494 @@
+/* ============================================================
+   MIYAKO MINI ── トップページのスタイル
+   元の静的サイト(index.html / style.css)から移植。
+   予約ページ(/booking)に影響しないよう、すべて.homePage配下に閉じ込めている。
+   ============================================================ */
+
+.homePage {
+  --cream: #f3ebd9;
+  --paper: #fbf7ec;
+  --green: #123328;
+  --green-mid: #1f5844;
+  --chili: #ce3c24;
+  --ink: #1a1a17;
+  --rule: rgba(18, 51, 40, 0.16);
+  --muted: rgba(18, 51, 40, 0.62);
+  --gutter: clamp(1.25rem, 5vw, 4.5rem);
+  --maxw: 1120px;
+  --latin: "Archivo", "Helvetica Neue", sans-serif;
+  --jp-display: "Zen Antique", serif;
+  --jp: "Zen Kaku Gothic New", sans-serif;
+
+  margin: 0;
+  background: var(--green);
+  color: var(--ink);
+  font-family: var(--jp);
+  line-height: 1.9;
+  letter-spacing: 0.03em;
+  -webkit-font-smoothing: antialiased;
+}
+
+.homePage h1,
+.homePage h2,
+.homePage h3 {
+  margin: 0;
+  font-weight: 400;
+}
+.homePage p {
+  margin: 0;
+}
+.homePage a {
+  color: inherit;
+}
+.homePage :focus-visible {
+  outline: 2px solid var(--chili);
+  outline-offset: 3px;
+}
+
+/* 英字はコンデンス／エクスパンドを使い分ける */
+.latin {
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 118, "wght" 700;
+  letter-spacing: 0.06em;
+}
+.latinTight {
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 78, "wght" 700;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- 敷いた背景写真 ---------- */
+.pageBg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: url("/hero-car.jpg");
+  background-size: cover;
+  background-position: 58% 52%;
+  background-repeat: no-repeat;
+}
+.pageScrim {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+      90deg,
+      rgba(18, 51, 40, 0.88) 0%,
+      rgba(18, 51, 40, 0.58) 40%,
+      rgba(18, 51, 40, 0.1) 70%,
+      rgba(18, 51, 40, 0.34) 100%
+    ),
+    linear-gradient(180deg, rgba(18, 51, 40, 0.3) 0%, rgba(18, 51, 40, 0.16) 38%, rgba(18, 51, 40, 0.6) 100%);
+}
+@media (max-width: 719px) {
+  .pageBg {
+    background-position: 66% 56%;
+  }
+  .pageScrim {
+    background: linear-gradient(
+      180deg,
+      rgba(18, 51, 40, 0.42) 0%,
+      rgba(18, 51, 40, 0.3) 30%,
+      rgba(18, 51, 40, 0.82) 78%,
+      rgba(18, 51, 40, 0.9) 100%
+    );
+  }
+}
+
+/* ---------- ラリー由来のチェッカー帯 ---------- */
+.checker {
+  height: 14px;
+  background: repeating-conic-gradient(var(--green) 0% 25%, transparent 0% 50%) 0 0/28px 28px;
+  background-color: var(--cream);
+}
+
+/* ---------- ヘッダー ---------- */
+.siteHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.4rem var(--gutter);
+  color: var(--paper);
+  border-bottom: 1px solid rgba(251, 247, 236, 0.22);
+}
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+}
+.brandName {
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 112, "wght" 800;
+  font-size: 1.15rem;
+  letter-spacing: 0.1em;
+}
+.brandSub {
+  font-size: 0.7rem;
+  color: rgba(251, 247, 236, 0.62);
+  letter-spacing: 0.18em;
+}
+.headTel {
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 90, "wght" 700;
+  font-size: 1rem;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+.headTel span {
+  font-family: var(--jp);
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  color: rgba(251, 247, 236, 0.62);
+  display: block;
+}
+@media (max-width: 600px) {
+  .brandSub {
+    display: none;
+  }
+}
+
+/* ---------- ヒーロー ---------- */
+.hero {
+  position: relative;
+  background: transparent;
+  padding: clamp(4rem, 11vw, 8rem) var(--gutter) clamp(5rem, 14vw, 10rem);
+  min-height: min(88svh, 760px);
+  display: flex;
+  align-items: center;
+}
+.heroInner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  width: 100%;
+}
+.eyebrow {
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 70, "wght" 600;
+  font-size: 0.76rem;
+  letter-spacing: 0.34em;
+  color: #f2a08c;
+  display: block;
+  margin-bottom: 1.6rem;
+}
+.headline {
+  font-family: var(--jp-display);
+  font-size: clamp(2.1rem, 6.6vw, 4.2rem);
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  color: var(--paper);
+  max-width: 14em;
+  text-shadow: 0 0.06em 0.5em rgba(18, 51, 40, 0.55);
+}
+.headline em {
+  font-style: normal;
+  color: #f2a08c;
+}
+.heroSub {
+  margin-top: 1.8rem;
+  max-width: 30em;
+  font-size: 0.95rem;
+  color: rgba(251, 247, 236, 0.86);
+  text-shadow: 0 0.05em 0.5em rgba(18, 51, 40, 0.5);
+}
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 2.4rem;
+}
+.btn {
+  display: inline-block;
+  color: var(--paper);
+  border-color: rgba(251, 247, 236, 0.75);
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  padding: 1rem 2rem;
+  border: 1.5px solid var(--green);
+  transition: 0.2s ease;
+}
+.btnSolid {
+  background: var(--chili);
+  border-color: var(--chili);
+  color: var(--paper);
+}
+.btnSolid:hover {
+  background: var(--green);
+  border-color: var(--green);
+}
+.btnLine {
+  background: rgba(18, 51, 40, 0.35);
+}
+.btnLine:hover {
+  background: var(--paper);
+  color: var(--green);
+  border-color: var(--paper);
+}
+
+/* ---------- ゼッケン ---------- */
+.roundel {
+  position: absolute;
+  left: var(--gutter);
+  bottom: clamp(1.6rem, 5vw, 3rem);
+  width: clamp(66px, 9vw, 92px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--chili);
+  display: grid;
+  place-items: center;
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 100, "wght" 800;
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+  letter-spacing: 0.02em;
+  box-shadow: 0 0.4rem 1.6rem rgba(18, 51, 40, 0.35);
+}
+@media (max-width: 719px) {
+  .roundel {
+    display: none;
+  }
+}
+
+/* ---------- 見出し ---------- */
+.band {
+  padding: clamp(3.5rem, 8vw, 6rem) var(--gutter);
+  background: rgba(243, 235, 217, 0.94);
+}
+.bandInner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+.bandPaper {
+  background: rgba(251, 247, 236, 0.96);
+}
+.bandGreen {
+  background: rgba(18, 51, 40, 0.93);
+  color: var(--paper);
+}
+.secHead {
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+  margin-bottom: 2.6rem;
+  flex-wrap: wrap;
+}
+.plate {
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 100, "wght" 800;
+  background: var(--chili);
+  color: var(--paper);
+  width: 2.6rem;
+  height: 2.6rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 0.95rem;
+  flex: none;
+}
+.secTitle {
+  font-family: var(--jp-display);
+  font-size: clamp(1.4rem, 3.6vw, 2rem);
+  color: var(--green);
+}
+.bandGreen .secTitle {
+  color: var(--paper);
+}
+.secNote {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.bandGreen .secNote {
+  color: rgba(251, 247, 236, 0.6);
+}
+
+/* ---------- 車種 ---------- */
+.cars {
+  display: grid;
+  gap: 2.4rem;
+}
+@media (min-width: 760px) {
+  .cars {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}
+.car {
+  border-top: 2px solid var(--green);
+  padding-top: 1.4rem;
+}
+.carName {
+  font-family: var(--jp-display);
+  font-size: 1.35rem;
+  color: var(--green);
+}
+.carEn {
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 68, "wght" 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  color: var(--chili);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.carDesc {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-top: 0.8rem;
+}
+.spec {
+  list-style: none;
+  margin: 1.4rem 0 0;
+  padding: 0;
+  font-size: 0.84rem;
+}
+.spec li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px dotted var(--rule);
+}
+.spec .v {
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 85, "wght" 600;
+}
+
+/* ---------- ロードブック（ルート） ---------- */
+.book {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.book li {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: 1.2rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(251, 247, 236, 0.18);
+}
+.book li:first-child {
+  border-top: 1px solid rgba(251, 247, 236, 0.18);
+}
+.book .km {
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 74, "wght" 700;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  color: var(--chili);
+}
+.book .km small {
+  display: block;
+  font-family: var(--jp);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: rgba(251, 247, 236, 0.55);
+  margin-top: 0.2rem;
+}
+.book h3 {
+  font-family: var(--jp-display);
+  font-size: 1.15rem;
+  margin-bottom: 0.4rem;
+}
+.book p {
+  font-size: 0.86rem;
+  color: rgba(251, 247, 236, 0.72);
+  max-width: 38em;
+}
+
+/* ---------- 料金 ---------- */
+.price {
+  width: 100%;
+  border-collapse: collapse;
+}
+.price th,
+.price td {
+  text-align: left;
+  padding: 1rem 0.6rem;
+  border-bottom: 1px solid var(--rule);
+  font-weight: 400;
+}
+.price thead th {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  padding-bottom: 0.6rem;
+}
+.price td.num {
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 85, "wght" 700;
+  text-align: right;
+  white-space: nowrap;
+}
+.price th.r {
+  text-align: right;
+}
+.priceNote {
+  margin-top: 1.4rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ---------- 借りる前に ---------- */
+.notes {
+  display: grid;
+  gap: 1.6rem;
+}
+@media (min-width: 760px) {
+  .notes {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.4rem;
+  }
+}
+.note h3 {
+  font-family: var(--jp-display);
+  font-size: 1.05rem;
+  color: var(--green);
+  margin-bottom: 0.5rem;
+}
+.note p {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.noteMark {
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 70, "wght" 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  color: var(--chili);
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+/* ---------- 予約 ---------- */
+.ctaWrap {
+  text-align: center;
+}
+.ctaTel {
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 95, "wght" 800;
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  display: inline-block;
+  margin: 0.6rem 0 0.4rem;
+}
+.ctaHours {
+  font-size: 0.8rem;
+  color: rgba(251, 247, 236, 0.6);
+}
+.eyebrowCta {
+  color: var(--chili);
+}
+
+/* ---------- フッター ---------- */
+.foot {
+  background: rgba(243, 235, 217, 0.96);
+  padding: 2.4rem var(--gutter);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.6rem;
+  justify-content: space-between;
+  font-size: 0.74rem;
+  color: var(--muted);
+}

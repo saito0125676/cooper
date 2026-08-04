@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// 予約1件の状態を表す
+// pending_hold: 仮押さえ中(Stripe決済待ち)
+// confirmed   : 決済完了・予約確定
+// cancelled   : 決済失敗などで取り消し
+// expired     : 15分以内に決済されず自動失効
+enum ReservationStatus {
+  pending_hold
+  confirmed
+  cancelled
+  expired
+}
+
+enum PaymentStatus {
+  unpaid
+  paid
+  failed
+}
+
+model Reservation {
+  id              String            @id @default(cuid())
+  // レンタル日(1日単位の予約なので日付のみを保持する)
+  date            DateTime          @db.Date
+
+  // 予約者情報
+  lastName      String
+  firstName     String
+  lastNameKana  String
+  firstNameKana String
+  birthDate     DateTime @db.Date
+
+  postalCode  String
+  prefecture  String
+  city        String
+  town        String
+  addressLine String
+
+  mobilePhone String
+  homePhone   String? // 唯一の任意項目
+  email       String
+
+  licenseNumber     String
+  licenseIssuedDate DateTime @db.Date
+
+  status        ReservationStatus @default(pending_hold)
+  paymentStatus PaymentStatus     @default(unpaid)
+
+  // 仮押さえを開始した時刻。ここから15分でタイムアウトする基準になる
+  holdStartedAt DateTime?
+
+  // Stripeとの突合・冪等性確保のためのキー
+  idempotencyKey          String  @unique @default(cuid())
+  stripeCheckoutSessionId String? @unique
+  stripePaymentIntentId   String? @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // 「この日は何件仮押さえ/確定しているか」を数える際に使う複合インデックス
+  @@index([date, status])
+}
+
+// 1日あたりの貸出可能台数の設定。
+// デモでは1行(singleton)のみだが、将来的に日付別上限や
+// 管理画面からの変更に拡張しやすいようテーブルとして独立させている
+model InventoryConfig {
+  id            Int @id @default(autoincrement())
+  dailyCapacity Int @default(10)
+
+  updatedAt DateTime @updatedAt
+}
+
+// Stripe Webhookの重複配信対策。処理済みイベントIDを記録する
+model ProcessedWebhookEvent {
+  // StripeのEvent ID (evt_xxx) をそのまま主キーにする
+  id          String   @id
+  type        String
+  processedAt DateTime @default(now())
+}

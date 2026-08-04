@@ -1,0 +1,136 @@
+.card {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(20, 40, 80, 0.12);
+  padding: 24px 20px;
+  box-sizing: border-box;
+}
+
+.title {
+  margin: 0 0 16px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #14315c;
+}
+
+.monthNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.monthNav button {
+  border: none;
+  background: transparent;
+  font-size: 1.4rem;
+  color: #9aa4b0;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px 8px;
+}
+
+.monthNav button:disabled {
+  color: #d8dce3;
+  cursor: default;
+}
+
+.monthLabel {
+  font-weight: 700;
+  color: #14315c;
+  font-size: 1.05rem;
+  min-width: 130px;
+  text-align: center;
+}
+
+.error {
+  color: crimson;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 6px;
+}
+
+.weekday {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #8a93a3;
+  padding-bottom: 8px;
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  padding: 6px 0 10px;
+  min-height: 56px;
+}
+
+.dayCell {
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.dayCell:disabled {
+  cursor: default;
+}
+
+.dayCell:hover:not(:disabled) {
+  background: #f2f5fa;
+}
+
+.dayNumber {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  color: #33415c;
+}
+
+.selected .dayNumber {
+  background: #14315c;
+  color: #ffffff;
+}
+
+.sun {
+  color: #e0533d;
+}
+
+.sat {
+  color: #2f6fed;
+}
+
+.markMany {
+  color: #2f7ded;
+  font-size: 1rem;
+}
+
+.markFew {
+  color: #f2a600;
+  font-size: 1rem;
+}
+
+.markNone {
+  color: #b7bfcb;
+  font-size: 1rem;
+}
+
+.markLoading {
+  color: #d8dce3;
+  font-size: 1rem;
+}
