@@ -1,31 +1,11 @@
 /* ============================================================
    MIYAKO MINI ── トップページのスタイル
-   元の静的サイト(index.html / style.css)から移植。
-   予約ページ(/booking)に影響しないよう、すべて.homePage配下に閉じ込めている。
+   テーマ変数(色・フォント)は app/globals.css の :root にまとめてある。
    ============================================================ */
 
 .homePage {
-  --cream: #f3ebd9;
-  --paper: #fbf7ec;
-  --green: #123328;
-  --green-mid: #1f5844;
-  --chili: #ce3c24;
-  --ink: #1a1a17;
-  --rule: rgba(18, 51, 40, 0.16);
-  --muted: rgba(18, 51, 40, 0.62);
-  --gutter: clamp(1.25rem, 5vw, 4.5rem);
-  --maxw: 1120px;
-  --latin: "Archivo", "Helvetica Neue", sans-serif;
-  --jp-display: "Zen Antique", serif;
-  --jp: "Zen Kaku Gothic New", sans-serif;
-
-  margin: 0;
-  background: var(--green);
+  background: var(--bg);
   color: var(--ink);
-  font-family: var(--jp);
-  line-height: 1.9;
-  letter-spacing: 0.03em;
-  -webkit-font-smoothing: antialiased;
 }
 
 .homePage h1,
@@ -37,80 +17,30 @@
 .homePage p {
   margin: 0;
 }
-.homePage a {
-  color: inherit;
-}
-.homePage :focus-visible {
-  outline: 2px solid var(--chili);
-  outline-offset: 3px;
-}
 
-/* 英字はコンデンス／エクスパンドを使い分ける */
 .latin {
   font-family: var(--latin);
-  font-variation-settings: "wdth" 118, "wght" 700;
-  letter-spacing: 0.06em;
+  font-variation-settings: "wdth" 100, "wght" 500;
+  letter-spacing: 0.1em;
 }
 .latinTight {
   font-family: var(--latin);
-  font-variation-settings: "wdth" 78, "wght" 700;
-  letter-spacing: 0.02em;
-}
-
-/* ---------- 敷いた背景写真 ---------- */
-.pageBg {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  background-image: url("/hero-car.jpg");
-  background-size: cover;
-  background-position: 58% 52%;
-  background-repeat: no-repeat;
-}
-.pageScrim {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(
-      90deg,
-      rgba(18, 51, 40, 0.88) 0%,
-      rgba(18, 51, 40, 0.58) 40%,
-      rgba(18, 51, 40, 0.1) 70%,
-      rgba(18, 51, 40, 0.34) 100%
-    ),
-    linear-gradient(180deg, rgba(18, 51, 40, 0.3) 0%, rgba(18, 51, 40, 0.16) 38%, rgba(18, 51, 40, 0.6) 100%);
-}
-@media (max-width: 719px) {
-  .pageBg {
-    background-position: 66% 56%;
-  }
-  .pageScrim {
-    background: linear-gradient(
-      180deg,
-      rgba(18, 51, 40, 0.42) 0%,
-      rgba(18, 51, 40, 0.3) 30%,
-      rgba(18, 51, 40, 0.82) 78%,
-      rgba(18, 51, 40, 0.9) 100%
-    );
-  }
-}
-
-/* ---------- ラリー由来のチェッカー帯 ---------- */
-.checker {
-  height: 14px;
-  background: repeating-conic-gradient(var(--green) 0% 25%, transparent 0% 50%) 0 0/28px 28px;
-  background-color: var(--cream);
+  font-variation-settings: "wdth" 78, "wght" 500;
+  letter-spacing: 0.06em;
 }
 
 /* ---------- ヘッダー ---------- */
 .siteHead {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1.4rem var(--gutter);
-  color: var(--paper);
-  border-bottom: 1px solid rgba(251, 247, 236, 0.22);
+  padding: 1.6rem var(--gutter);
 }
 .brand {
   display: flex;
@@ -119,28 +49,29 @@
 }
 .brandName {
   font-family: var(--latin);
-  font-variation-settings: "wdth" 112, "wght" 800;
-  font-size: 1.15rem;
-  letter-spacing: 0.1em;
+  font-variation-settings: "wdth" 96, "wght" 500;
+  font-size: 1rem;
+  letter-spacing: 0.16em;
 }
 .brandSub {
-  font-size: 0.7rem;
-  color: rgba(251, 247, 236, 0.62);
-  letter-spacing: 0.18em;
+  font-size: 0.68rem;
+  color: var(--faint);
+  letter-spacing: 0.2em;
 }
 .headTel {
   font-family: var(--latin);
-  font-variation-settings: "wdth" 90, "wght" 700;
-  font-size: 1rem;
+  font-variation-settings: "wdth" 82, "wght" 500;
+  font-size: 0.92rem;
   text-decoration: none;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 .headTel span {
   font-family: var(--jp);
-  font-size: 0.66rem;
-  letter-spacing: 0.2em;
-  color: rgba(251, 247, 236, 0.62);
+  font-size: 0.64rem;
+  letter-spacing: 0.24em;
+  color: var(--faint);
   display: block;
+  margin-bottom: 0.2rem;
 }
 @media (max-width: 600px) {
   .brandSub {
@@ -148,101 +79,212 @@
   }
 }
 
-/* ---------- ヒーロー ---------- */
-.hero {
+/* ---------- ヒーロー(左: 予約 / 右: 写真) ---------- */
+.heroSplit {
   position: relative;
-  background: transparent;
-  padding: clamp(4rem, 11vw, 8rem) var(--gutter) clamp(5rem, 14vw, 10rem);
-  min-height: min(88svh, 760px);
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  min-height: 100svh;
 }
-.heroInner {
-  max-width: var(--maxw);
-  margin: 0 auto;
-  width: 100%;
+.heroLeft {
+  flex: 1 1 420px;
+  max-width: 640px;
+  padding: clamp(7.5rem, 14vw, 10rem) clamp(1.75rem, 4vw, 4rem) 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
 }
+.heroRight {
+  flex: 1 1 420px;
+  position: relative;
+  min-height: 60svh;
+}
+@media (min-width: 860px) {
+  .heroRight {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    align-self: flex-start;
+    overflow: hidden;
+  }
+}
+
 .eyebrow {
   font-family: var(--latin);
-  font-variation-settings: "wdth" 70, "wght" 600;
-  font-size: 0.76rem;
-  letter-spacing: 0.34em;
-  color: #f2a08c;
+  font-variation-settings: "wdth" 68, "wght" 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.36em;
+  color: var(--faint);
   display: block;
   margin-bottom: 1.6rem;
 }
 .headline {
   font-family: var(--jp-display);
-  font-size: clamp(2.1rem, 6.6vw, 4.2rem);
-  line-height: 1.3;
-  letter-spacing: 0.02em;
-  color: var(--paper);
-  max-width: 14em;
-  text-shadow: 0 0.06em 0.5em rgba(18, 51, 40, 0.55);
+  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  font-weight: 400;
+  margin-bottom: 2rem;
 }
 .headline em {
   font-style: normal;
-  color: #f2a08c;
+  color: var(--accent);
 }
-.heroSub {
-  margin-top: 1.8rem;
-  max-width: 30em;
-  font-size: 0.95rem;
-  color: rgba(251, 247, 236, 0.86);
-  text-shadow: 0 0.05em 0.5em rgba(18, 51, 40, 0.5);
+
+/* ---------- ヒーロー右: 背景写真とスポットライト演出 ---------- */
+.heroBgWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  perspective: 1400px;
 }
-.heroActions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.9rem;
-  margin-top: 2.4rem;
+.pageBg {
+  position: absolute;
+  inset: -6% -6%;
+  background-image: url("/hero-sakura.jpg");
+  background-size: cover;
+  background-position: 50% 42%;
+  background-repeat: no-repeat;
 }
-.btn {
-  display: inline-block;
-  color: var(--paper);
-  border-color: rgba(251, 247, 236, 0.75);
-  text-decoration: none;
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
-  padding: 1rem 2rem;
-  border: 1.5px solid var(--green);
-  transition: 0.2s ease;
+.spotlightBeam {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  clip-path: polygon(48.5% 0%, 51.5% 0%, 76% 82%, 26% 82%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 250, 235, 0.95) 0%,
+    rgba(255, 250, 235, 0.5) 45%,
+    rgba(255, 240, 210, 0.18) 78%,
+    rgba(255, 240, 210, 0) 100%
+  );
+  mix-blend-mode: screen;
+  transform-origin: 50% 0%;
+  transform: scaleY(0);
+  opacity: 0;
+  animation: beamOn 3.6s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
-.btnSolid {
-  background: var(--chili);
-  border-color: var(--chili);
-  color: var(--paper);
+.spotlightGround {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 80%;
+  width: 60%;
+  height: 16%;
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 248, 230, 0.85) 0%,
+    rgba(255, 224, 166, 0.35) 45%,
+    rgba(255, 224, 166, 0) 78%
+  );
+  mix-blend-mode: screen;
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  animation: groundOn 3.6s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
-.btnSolid:hover {
-  background: var(--green);
-  border-color: var(--green);
+@keyframes beamOn {
+  0%,
+  38% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  44% {
+    transform: scaleY(0.4);
+    opacity: 0.9;
+  }
+  49% {
+    transform: scaleY(0.25);
+    opacity: 0.5;
+  }
+  56% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 0.55;
+  }
 }
-.btnLine {
-  background: rgba(18, 51, 40, 0.35);
+@keyframes groundOn {
+  0%,
+  52% {
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0;
+  }
+  64% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.4;
+  }
 }
-.btnLine:hover {
-  background: var(--paper);
-  color: var(--green);
-  border-color: var(--paper);
+.heroBlackout {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: var(--bg);
+  animation: blackoutFade 3.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+@keyframes blackoutFade {
+  0%,
+  54% {
+    opacity: 1;
+  }
+  64% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .spotlightBeam,
+  .spotlightGround {
+    animation: none;
+    opacity: 0;
+  }
+  .heroBlackout {
+    animation: none;
+    opacity: 0;
+  }
+}
+.heroScrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+      90deg,
+      rgba(11, 9, 6, 0.5) 0%,
+      rgba(11, 9, 6, 0.05) 30%,
+      rgba(11, 9, 6, 0.05) 70%,
+      rgba(11, 9, 6, 0.55) 100%
+    ),
+    linear-gradient(180deg, rgba(11, 9, 6, 0.08) 0%, rgba(11, 9, 6, 0.1) 46%, rgba(11, 9, 6, 0.7) 100%);
 }
 
 /* ---------- ゼッケン ---------- */
 .roundel {
   position: absolute;
-  left: var(--gutter);
-  bottom: clamp(1.6rem, 5vw, 3rem);
-  width: clamp(66px, 9vw, 92px);
+  z-index: 2;
+  left: clamp(1.5rem, 3vw, 2.5rem);
+  bottom: clamp(1.8rem, 5vw, 3rem);
+  width: clamp(56px, 7vw, 72px);
   aspect-ratio: 1;
   border-radius: 50%;
-  background: var(--paper);
-  color: var(--chili);
+  border: 1px solid var(--faint);
+  color: var(--faint);
   display: grid;
   place-items: center;
   font-family: var(--latin);
-  font-variation-settings: "wdth" 100, "wght" 800;
-  font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+  font-variation-settings: "wdth" 90, "wght" 500;
+  font-size: clamp(1.1rem, 2.4vw, 1.4rem);
   letter-spacing: 0.02em;
-  box-shadow: 0 0.4rem 1.6rem rgba(18, 51, 40, 0.35);
 }
 @media (max-width: 719px) {
   .roundel {
@@ -250,108 +292,123 @@
   }
 }
 
+.heroMark {
+  position: absolute;
+  z-index: 2;
+  right: clamp(1.5rem, 3vw, 2.5rem);
+  bottom: clamp(1.8rem, 5vw, 3rem);
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 80, "wght" 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  color: var(--faint);
+}
+
 /* ---------- 見出し ---------- */
 .band {
-  padding: clamp(3.5rem, 8vw, 6rem) var(--gutter);
-  background: rgba(243, 235, 217, 0.94);
+  position: relative;
+  padding: clamp(5rem, 10vw, 8rem) var(--gutter);
 }
 .bandInner {
   max-width: var(--maxw);
   margin: 0 auto;
 }
-.bandPaper {
-  background: rgba(251, 247, 236, 0.96);
+.secTag {
+  position: absolute;
+  left: calc(var(--gutter) * 0.32);
+  top: clamp(5rem, 10vw, 8rem);
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 70, "wght" 500;
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  color: var(--faint);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
 }
-.bandGreen {
-  background: rgba(18, 51, 40, 0.93);
-  color: var(--paper);
+@media (max-width: 900px) {
+  .secTag {
+    display: none;
+  }
 }
 .secHead {
   display: flex;
   align-items: baseline;
-  gap: 1.2rem;
-  margin-bottom: 2.6rem;
+  gap: 1.4rem;
+  margin-bottom: 3rem;
   flex-wrap: wrap;
 }
 .plate {
   font-family: var(--latin);
-  font-variation-settings: "wdth" 100, "wght" 800;
-  background: var(--chili);
-  color: var(--paper);
-  width: 2.6rem;
-  height: 2.6rem;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  font-size: 0.95rem;
+  font-variation-settings: "wdth" 90, "wght" 500;
+  color: var(--faint);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
   flex: none;
 }
 .secTitle {
   font-family: var(--jp-display);
-  font-size: clamp(1.4rem, 3.6vw, 2rem);
-  color: var(--green);
-}
-.bandGreen .secTitle {
-  color: var(--paper);
+  font-size: clamp(1.35rem, 3.2vw, 1.9rem);
+  color: var(--ink);
+  font-weight: 400;
 }
 .secNote {
-  font-size: 0.8rem;
-  color: var(--muted);
-}
-.bandGreen .secNote {
-  color: rgba(251, 247, 236, 0.6);
+  font-size: 0.78rem;
+  color: var(--faint);
 }
 
 /* ---------- 車種 ---------- */
 .cars {
   display: grid;
-  gap: 2.4rem;
+  gap: 3rem;
 }
 @media (min-width: 760px) {
   .cars {
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    gap: 4rem;
   }
 }
 .car {
-  border-top: 2px solid var(--green);
-  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 1.6rem;
 }
 .carName {
   font-family: var(--jp-display);
-  font-size: 1.35rem;
-  color: var(--green);
+  font-size: 1.3rem;
+  color: var(--ink);
+  font-weight: 400;
 }
 .carEn {
   font-family: var(--latin);
-  font-variation-settings: "wdth" 68, "wght" 600;
-  font-size: 0.72rem;
-  letter-spacing: 0.24em;
-  color: var(--chili);
+  font-variation-settings: "wdth" 66, "wght" 500;
+  font-size: 0.68rem;
+  letter-spacing: 0.26em;
+  color: var(--accent);
   display: block;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.4rem;
 }
 .carDesc {
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   color: var(--muted);
-  margin-top: 0.8rem;
+  margin-top: 0.9rem;
 }
 .spec {
   list-style: none;
-  margin: 1.4rem 0 0;
+  margin: 1.6rem 0 0;
   padding: 0;
-  font-size: 0.84rem;
+  font-size: 0.82rem;
 }
 .spec li {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.6rem 0;
-  border-bottom: 1px dotted var(--rule);
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--muted);
 }
 .spec .v {
   font-family: var(--latin);
-  font-variation-settings: "wdth" 85, "wght" 600;
+  font-variation-settings: "wdth" 80, "wght" 500;
+  color: var(--ink);
 }
 
 /* ---------- ロードブック（ルート） ---------- */
@@ -362,37 +419,39 @@
 }
 .book li {
   display: grid;
-  grid-template-columns: 4.5rem 1fr;
-  gap: 1.2rem;
-  padding: 1.5rem 0;
-  border-bottom: 1px solid rgba(251, 247, 236, 0.18);
+  grid-template-columns: 5rem 1fr;
+  gap: 1.4rem;
+  padding: 1.8rem 0;
+  border-bottom: 1px solid var(--rule);
 }
 .book li:first-child {
-  border-top: 1px solid rgba(251, 247, 236, 0.18);
+  border-top: 1px solid var(--rule);
 }
 .book .km {
   font-family: var(--latin);
-  font-variation-settings: "wdth" 74, "wght" 700;
-  font-size: 1.5rem;
+  font-variation-settings: "wdth" 70, "wght" 500;
+  font-size: 1.4rem;
   line-height: 1.2;
-  color: var(--chili);
+  color: var(--accent);
 }
 .book .km small {
   display: block;
   font-family: var(--jp);
-  font-size: 0.62rem;
-  letter-spacing: 0.18em;
-  color: rgba(251, 247, 236, 0.55);
-  margin-top: 0.2rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--faint);
+  margin-top: 0.3rem;
 }
 .book h3 {
   font-family: var(--jp-display);
-  font-size: 1.15rem;
-  margin-bottom: 0.4rem;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+  font-weight: 400;
 }
 .book p {
-  font-size: 0.86rem;
-  color: rgba(251, 247, 236, 0.72);
+  font-size: 0.85rem;
+  color: var(--muted);
   max-width: 38em;
 }
 
@@ -404,47 +463,56 @@
 .price th,
 .price td {
   text-align: left;
-  padding: 1rem 0.6rem;
+  padding: 1.1rem 0.6rem;
   border-bottom: 1px solid var(--rule);
   font-weight: 400;
 }
 .price thead th {
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  color: var(--faint);
+  padding-bottom: 0.8rem;
+}
+.price td {
   color: var(--muted);
-  padding-bottom: 0.6rem;
 }
 .price td.num {
   font-family: var(--latin);
-  font-variation-settings: "wdth" 85, "wght" 700;
+  font-variation-settings: "wdth" 80, "wght" 500;
   text-align: right;
   white-space: nowrap;
+  color: var(--ink);
 }
 .price th.r {
   text-align: right;
 }
 .priceNote {
-  margin-top: 1.4rem;
-  font-size: 0.8rem;
-  color: var(--muted);
+  margin-top: 1.6rem;
+  font-size: 0.78rem;
+  color: var(--faint);
 }
 
 /* ---------- 借りる前に ---------- */
 .notes {
   display: grid;
-  gap: 1.6rem;
+  gap: 2.2rem;
 }
 @media (min-width: 760px) {
   .notes {
     grid-template-columns: repeat(3, 1fr);
-    gap: 2.4rem;
+    gap: 3rem;
   }
+}
+.note {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.4rem;
 }
 .note h3 {
   font-family: var(--jp-display);
   font-size: 1.05rem;
-  color: var(--green);
-  margin-bottom: 0.5rem;
+  color: var(--ink);
+  margin-bottom: 0.6rem;
+  font-weight: 400;
 }
 .note p {
   font-size: 0.85rem;
@@ -452,43 +520,59 @@
 }
 .noteMark {
   font-family: var(--latin);
-  font-variation-settings: "wdth" 70, "wght" 700;
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
-  color: var(--chili);
+  font-variation-settings: "wdth" 66, "wght" 500;
+  font-size: 0.68rem;
+  letter-spacing: 0.26em;
+  color: var(--accent);
   display: block;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.7rem;
 }
 
-/* ---------- 予約 ---------- */
+/* ---------- 予約(お電話) ---------- */
 .ctaWrap {
   text-align: center;
 }
 .ctaTel {
   font-family: var(--latin);
-  font-variation-settings: "wdth" 95, "wght" 800;
-  font-size: clamp(1.8rem, 6vw, 3rem);
+  font-variation-settings: "wdth" 88, "wght" 500;
+  font-size: clamp(1.7rem, 5.4vw, 2.8rem);
   text-decoration: none;
   letter-spacing: 0.02em;
   display: inline-block;
-  margin: 0.6rem 0 0.4rem;
+  margin: 1rem 0 0.6rem;
+  color: var(--ink);
 }
 .ctaHours {
-  font-size: 0.8rem;
-  color: rgba(251, 247, 236, 0.6);
+  font-size: 0.78rem;
+  color: var(--faint);
 }
 .eyebrowCta {
-  color: var(--chili);
+  color: var(--accent);
+}
+
+.btn {
+  display: inline-block;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.82rem;
+  letter-spacing: 0.16em;
+  padding: 1rem 2.1rem;
+  border: 1px solid rgba(237, 231, 217, 0.5);
+  transition: 0.25s ease;
+}
+.btn:hover {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
 }
 
 /* ---------- フッター ---------- */
 .foot {
-  background: rgba(243, 235, 217, 0.96);
-  padding: 2.4rem var(--gutter);
+  padding: 2.6rem var(--gutter);
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem 1.6rem;
   justify-content: space-between;
-  font-size: 0.74rem;
-  color: var(--muted);
+  font-size: 0.72rem;
+  color: var(--faint);
 }
