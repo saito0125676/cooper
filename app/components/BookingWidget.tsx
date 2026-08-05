@@ -71,10 +71,6 @@ export default function BookingWidget() {
 
   return (
     <div className={styles.widget}>
-      <span className={styles.eyebrow}>RESERVATION · STEP 1</span>
-      <h2 className={styles.widgetTitle}>まず、日付を選んでください</h2>
-      <p className={styles.widgetSub}>1日単位のご予約です。1日あたり10台までご案内できます。</p>
-
       <ReservationCalendar
         selectedDate={date}
         onSelect={setDate}

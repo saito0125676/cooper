@@ -20,19 +20,8 @@ const HERO_PHOTOS = [
 export default function Home() {
   return (
     <div className={styles.homePage}>
-      <header className={styles.siteHead}>
-        <div className={styles.brand}>
-          <span className={styles.brandName}>MIYAKO MINI</span>
-          <span className={styles.brandSub}>宮古島 / レンタカー</span>
-        </div>
-        <a className={styles.headTel} href="tel:0980000000">
-          <span>予約</span>0980-00-0000
-        </a>
-      </header>
-
       <section className={styles.heroSplit}>
         <div className={styles.heroLeft}>
-          <span className={styles.eyebrow}>RENT A CLASSIC MINI · MIYAKOJIMA</span>
           <BookingWidget />
           <h1 className={styles.headline}>
             屋根が低いと、
@@ -55,9 +44,6 @@ export default function Home() {
                 />
               ))}
             </div>
-            <div className={styles.spotlightBeam} />
-            <div className={styles.spotlightGround} />
-            <div className={styles.heroBlackout} />
           </div>
           <div className={styles.heroScrim} aria-hidden="true" />
           <div className={styles.roundel}>56</div>
