@@ -1,69 +1,71 @@
 .card {
   width: 100%;
-  max-width: 400px;
-  border-radius: 20px;
-  background: #ffffff;
-  box-shadow: 0 8px 24px rgba(20, 40, 80, 0.12);
-  padding: 24px 20px;
-  box-sizing: border-box;
+  margin-top: 1.6rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
 }
 
 .title {
-  margin: 0 0 16px;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #14315c;
+  margin: 0 0 1.2rem;
+  font-family: var(--jp-display);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--ink);
 }
 
 .monthNav {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  margin-bottom: 16px;
+  gap: 1.4rem;
+  margin-bottom: 1.2rem;
 }
 
 .monthNav button {
   border: none;
   background: transparent;
-  font-size: 1.4rem;
-  color: #9aa4b0;
-  cursor: pointer;
+  font-size: 1.3rem;
+  color: var(--muted);
   line-height: 1;
   padding: 4px 8px;
 }
 
 .monthNav button:disabled {
-  color: #d8dce3;
+  color: var(--faint);
   cursor: default;
 }
 
 .monthLabel {
-  font-weight: 700;
-  color: #14315c;
-  font-size: 1.05rem;
-  min-width: 130px;
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 85, "wght" 500;
+  color: var(--ink);
+  font-size: 0.9rem;
+  min-width: 110px;
   text-align: center;
+  letter-spacing: 0.04em;
 }
 
 .error {
-  color: crimson;
-  font-size: 0.85rem;
+  color: var(--accent);
+  font-size: 0.8rem;
   text-align: center;
+  margin-bottom: 0.8rem;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  row-gap: 6px;
+  row-gap: 4px;
 }
 
 .weekday {
   text-align: center;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #8a93a3;
-  padding-bottom: 8px;
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 80, "wght" 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--faint);
+  padding-bottom: 0.6rem;
 }
 
 .cell {
@@ -71,66 +73,68 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 4px;
-  padding: 6px 0 10px;
-  min-height: 56px;
+  gap: 3px;
+  padding: 4px 0 8px;
+  min-height: 48px;
 }
 
 .dayCell {
   background: none;
   border: none;
-  cursor: pointer;
-  border-radius: 12px;
 }
 
 .dayCell:disabled {
   cursor: default;
 }
 
-.dayCell:hover:not(:disabled) {
-  background: #f2f5fa;
+.dayCell:hover:not(:disabled) .dayNumber {
+  border-color: var(--muted);
 }
 
 .dayNumber {
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  font-size: 0.9rem;
-  color: #33415c;
+  border: 1px solid transparent;
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 80, "wght" 500;
+  font-size: 0.82rem;
+  color: var(--ink);
 }
 
 .selected .dayNumber {
-  background: #14315c;
-  color: #ffffff;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ink);
 }
 
 .sun {
-  color: #e0533d;
+  color: var(--accent);
 }
 
 .sat {
-  color: #2f6fed;
+  color: var(--muted);
 }
 
 .markMany {
-  color: #2f7ded;
-  font-size: 1rem;
+  color: var(--muted);
+  font-size: 0.72rem;
 }
 
 .markFew {
-  color: #f2a600;
-  font-size: 1rem;
+  color: var(--accent);
+  font-size: 0.72rem;
 }
 
 .markNone {
-  color: #b7bfcb;
-  font-size: 1rem;
+  color: var(--faint);
+  font-size: 0.72rem;
 }
 
 .markLoading {
-  color: #d8dce3;
-  font-size: 1rem;
+  color: var(--faint);
+  font-size: 0.72rem;
 }

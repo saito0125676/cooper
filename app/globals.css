@@ -1,13 +1,19 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --bg: #0b0906;
+  --ink: #ede7d9;
+  --muted: rgba(237, 231, 217, 0.56);
+  --faint: rgba(237, 231, 217, 0.32);
+  --rule: rgba(237, 231, 217, 0.14);
+  --accent: #b25c3b;
+  --gutter: clamp(1.25rem, 5vw, 4.5rem);
+  --maxw: 1180px;
+  --latin: "Archivo", "Helvetica Neue", sans-serif;
+  --jp-display: "Zen Antique", serif;
+  --jp: "Zen Kaku Gothic New", sans-serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: var(--bg);
+  --foreground: var(--ink);
+  color-scheme: dark;
 }
 
 html {
@@ -26,9 +32,12 @@ body {
   flex-direction: column;
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--jp);
+  line-height: 2;
+  letter-spacing: 0.04em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: url("/cursor-car.svg") 22 18, auto;
 }
 
 * {
@@ -37,13 +46,23 @@ body {
   margin: 0;
 }
 
+h1,
+h2,
+h3 {
+  font-weight: 400;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+a,
+button {
+  cursor: url("/cursor-car.svg") 22 18, pointer;
+}
+
+:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 3px;
 }

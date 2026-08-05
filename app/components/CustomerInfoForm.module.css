@@ -1,46 +1,40 @@
 .form {
   width: 100%;
-  background: #ffffff;
 }
 
 .section {
-  padding: 10px 16px;
-  border-bottom: 1px solid #e4e6ea;
-}
-
-.section:nth-child(odd) {
-  background: #ffffff;
-}
-
-.section:nth-child(even) {
-  background: #f2f3f5;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule);
 }
 
 .sectionHeader {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
 }
 
 .sectionLabel {
-  font-weight: 700;
-  font-size: 1rem;
-  color: #222831;
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 80, "wght" 500;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  color: var(--ink);
 }
 
 .requiredBadge {
-  background: #d92d20;
-  color: #ffffff;
-  font-size: 0.7rem;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 0;
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 70, "wght" 500;
+  color: var(--accent);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  border: 1px solid var(--accent);
+  padding: 1px 6px;
 }
 
 .row {
   display: flex;
-  gap: 10px;
+  gap: 0.6rem;
 }
 
 .row > * {
@@ -53,116 +47,122 @@ input[type="email"].input,
 input[type="tel"].input {
   width: 100%;
   box-sizing: border-box;
-  padding: 12px 14px;
-  border: 1px solid #d3d7de;
-  border-radius: 10px;
-  font-size: 0.95rem;
-  background: #ffffff;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--jp);
+  font-size: 0.88rem;
 }
 
 .input::placeholder {
-  color: #b5bac3;
+  color: var(--faint);
 }
 
 .dateRow {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.4rem;
   flex-wrap: wrap;
 }
 
 .dateRow select {
   flex: 1;
-  min-width: 90px;
-  padding: 10px 8px;
-  border: 1px solid #d3d7de;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  background: #ffffff;
+  min-width: 84px;
+  padding: 0.6rem 0.5rem;
+  border: 1px solid var(--rule);
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--jp);
+  font-size: 0.84rem;
 }
 
 .dateRow span {
-  color: #4a5568;
-  font-size: 0.9rem;
+  color: var(--muted);
+  font-size: 0.84rem;
 }
 
 .postalRow {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .postalRow input {
-  max-width: 110px;
+  max-width: 100px;
 }
 
 .postalSeparator {
-  color: #4a5568;
+  color: var(--muted);
 }
 
 .zipButton {
-  border: 1px solid #d3d7de;
-  background: #eceef1;
-  color: #2d3340;
-  border-radius: 10px;
-  padding: 12px 18px;
-  font-size: 0.9rem;
-  cursor: pointer;
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--muted);
+  padding: 0.7rem 1rem;
+  font-family: var(--jp);
+  font-size: 0.82rem;
   white-space: nowrap;
 }
 
 .zipButton:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: default;
 }
 
 .fieldError {
-  color: #d92d20;
-  font-size: 0.8rem;
-  margin: 6px 0 0;
+  color: var(--accent);
+  font-size: 0.76rem;
+  margin: 0.4rem 0 0;
 }
 
 .hint {
-  color: #6b7280;
-  font-size: 0.78rem;
-  margin: 6px 0 0;
+  color: var(--faint);
+  font-size: 0.72rem;
+  margin: 0.4rem 0 0;
 }
 
 .actions {
   display: flex;
-  gap: 12px;
-  padding: 16px;
+  gap: 0.8rem;
+  padding: 1.4rem 0 0;
 }
 
 .backButton {
   flex: 1;
-  padding: 14px;
-  border-radius: 10px;
-  border: 1px solid #d3d7de;
-  background: #ffffff;
-  color: #33415c;
-  font-weight: 600;
-  cursor: pointer;
+  padding: 0.9rem;
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--jp);
+  font-size: 0.85rem;
 }
 
 .submitButton {
   flex: 2;
-  padding: 14px;
-  border-radius: 10px;
-  border: none;
-  background: #14315c;
-  color: #ffffff;
-  font-weight: 700;
-  cursor: pointer;
+  padding: 0.9rem;
+  border: 1px solid rgba(237, 231, 217, 0.5);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--jp);
+  font-size: 0.85rem;
+  transition: 0.25s ease;
+}
+
+.submitButton:not(:disabled):hover {
+  background: var(--ink);
+  color: var(--bg);
 }
 
 .submitButton:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: default;
 }
 
 .submitError {
-  color: #d92d20;
+  color: var(--accent);
   text-align: center;
-  padding: 0 16px 12px;
+  padding: 0.8rem 0 0;
+  font-size: 0.84rem;
 }
