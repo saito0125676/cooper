@@ -16,7 +16,7 @@ import {
 } from "@/lib/reservations";
 
 // デモ用の固定料金(1日あたり)
-const CAR_UNIT_PRICE_JPY = 8000;
+export const CAR_UNIT_PRICE_JPY = 8000;
 
 type CreateReservationBody = { date?: unknown } & Partial<
   Record<keyof CustomerInfoInput, unknown>
