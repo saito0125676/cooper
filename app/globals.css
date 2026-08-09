@@ -1,9 +1,9 @@
 :root {
-  --bg: #0b0906;
+  --bg: #179a4e;
   --ink: #ede7d9;
-  --muted: rgba(237, 231, 217, 0.56);
-  --faint: rgba(237, 231, 217, 0.32);
-  --rule: rgba(237, 231, 217, 0.14);
+  --muted: rgba(237, 231, 217, 0.66);
+  --faint: rgba(237, 231, 217, 0.42);
+  --rule: rgba(237, 231, 217, 0.28);
   --accent: #b25c3b;
   --gutter: clamp(1.25rem, 5vw, 4.5rem);
   --maxw: 1180px;
@@ -31,7 +31,11 @@ body {
   display: flex;
   flex-direction: column;
   color: var(--foreground);
-  background: var(--background);
+  background-color: var(--background);
+  background-image: linear-gradient(rgba(8, 20, 12, 0.42), rgba(8, 20, 12, 0.42)), url("/bg-green-texture.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   font-family: var(--jp);
   line-height: 2;
   letter-spacing: 0.04em;

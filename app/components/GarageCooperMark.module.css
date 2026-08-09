@@ -1,0 +1,15 @@
+.drawStroke {
+  stroke-dashoffset: 1000;
+  animation: drawOn 3.4s cubic-bezier(0.65, 0, 0.35, 1) 0.15s forwards;
+}
+@keyframes drawOn {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .drawStroke {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}

@@ -1,5 +1,6 @@
+import Link from "next/link";
 import styles from "./home.module.css";
-import BookingWidget from "./components/BookingWidget";
+import GarageCooperMark from "./components/GarageCooperMark";
 
 export const metadata = {
   title: "MIYAKO MINI｜宮古島でミニを借りる",
@@ -21,35 +22,27 @@ export default function Home() {
   return (
     <div className={styles.homePage}>
       <section className={styles.heroSplit}>
-        <div className={styles.heroLeft}>
-          <BookingWidget />
-          <h1 className={styles.headline}>
-            屋根が低いと、
-            <br />
-            季節に<em>いちばん</em>近い。
-          </h1>
-        </div>
-
-        <div className={styles.heroRight}>
-          <div className={styles.heroBgWrap} aria-hidden="true">
-            <div className={styles.pageBgSlides}>
-              {HERO_PHOTOS.map((photo) => (
-                <div
-                  key={photo.src}
-                  className={styles.pageBgSlide}
-                  style={{
-                    backgroundImage: `url(${photo.src})`,
-                    backgroundPosition: photo.position,
-                  }}
-                />
-              ))}
-            </div>
+        <div className={styles.heroBgWrap} aria-hidden="true">
+          <div className={styles.pageBgSlides}>
+            {HERO_PHOTOS.map((photo) => (
+              <div
+                key={photo.src}
+                className={styles.pageBgSlide}
+                style={{
+                  backgroundImage: `url(${photo.src})`,
+                  backgroundPosition: photo.position,
+                }}
+              />
+            ))}
           </div>
-          <div className={styles.heroScrim} aria-hidden="true" />
-          <div className={styles.roundel}>56</div>
-          <span className={styles.heroMark}>GARAGE COOPER</span>
         </div>
+        <div className={styles.heroScrim} aria-hidden="true" />
       </section>
+
+      <GarageCooperMark className={styles.fixedWordmark} />
+      <Link href="/booking" className={`${styles.btn} ${styles.fixedFind}`}>
+        空車を探す
+      </Link>
 
       {/* 車種 */}
       <section className={styles.band} id="cars">

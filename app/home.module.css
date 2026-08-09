@@ -4,7 +4,6 @@
    ============================================================ */
 
 .homePage {
-  background: var(--bg);
   color: var(--ink);
 }
 
@@ -82,33 +81,7 @@
 /* ---------- ヒーロー(左: 予約 / 右: 写真) ---------- */
 .heroSplit {
   position: relative;
-  display: flex;
-  flex-wrap: wrap;
   min-height: 100svh;
-}
-.heroLeft {
-  flex: 1 1 420px;
-  max-width: 640px;
-  padding: clamp(7.5rem, 14vw, 10rem) clamp(1.75rem, 4vw, 4rem) 4rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  z-index: 2;
-}
-.heroRight {
-  flex: 1 1 420px;
-  position: relative;
-  min-height: 60svh;
-}
-@media (min-width: 860px) {
-  .heroRight {
-    position: sticky;
-    top: 0;
-    height: 100svh;
-    align-self: flex-start;
-    overflow: hidden;
-  }
 }
 
 .eyebrow {
@@ -120,20 +93,53 @@
   display: block;
   margin-bottom: 1.6rem;
 }
-.headline {
-  font-family: var(--jp-display);
-  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
-  line-height: 1.5;
-  letter-spacing: 0.03em;
-  color: var(--ink);
-  font-weight: 400;
-  margin-top: 2.4rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--rule);
+
+/* ---------- ヒーロー: 写真ほぼ素通し、縦組みの余白レイアウト ---------- */
+.fixedWordmark {
+  position: fixed;
+  z-index: 50;
+  left: var(--gutter);
+  top: clamp(1.4rem, 3.4vw, 2rem);
+  width: clamp(130px, 16vw, 220px);
+  height: auto;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.7)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45));
 }
-.headline em {
-  font-style: normal;
-  color: var(--accent);
+.fixedFind {
+  position: fixed;
+  z-index: 50;
+  right: var(--gutter);
+  top: clamp(1.4rem, 3.4vw, 2rem);
+  background: rgba(11, 9, 6, 0.35);
+  backdrop-filter: blur(6px);
+}
+
+.heroVertical {
+  position: absolute;
+  z-index: 2;
+  right: var(--gutter);
+  top: clamp(4rem, 10vw, 6rem);
+  bottom: clamp(4rem, 10vw, 6rem);
+  display: flex;
+  align-items: stretch;
+  gap: clamp(1rem, 2.4vw, 1.6rem);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+.heroDate {
+  font-family: var(--jp-display);
+  font-size: clamp(0.85rem, 1.4vw, 1rem);
+  letter-spacing: 0.14em;
+  color: var(--muted);
+}
+.heroRule {
+  width: 1px;
+  background: var(--rule);
+}
+.heroPlace {
+  font-family: var(--jp-display);
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  letter-spacing: 0.16em;
+  color: var(--ink);
 }
 
 /* ---------- ヒーロー右: 背景写真とスポットライト演出 ---------- */
@@ -143,6 +149,7 @@
   z-index: 0;
   overflow: hidden;
   perspective: 1400px;
+  background-color: #0b0906;
 }
 .pageBgSlides {
   position: absolute;
@@ -204,50 +211,8 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(
-      90deg,
-      rgba(11, 9, 6, 0.5) 0%,
-      rgba(11, 9, 6, 0.05) 30%,
-      rgba(11, 9, 6, 0.05) 70%,
-      rgba(11, 9, 6, 0.55) 100%
-    ),
-    linear-gradient(180deg, rgba(11, 9, 6, 0.08) 0%, rgba(11, 9, 6, 0.1) 46%, rgba(11, 9, 6, 0.7) 100%);
-}
-
-/* ---------- ゼッケン ---------- */
-.roundel {
-  position: absolute;
-  z-index: 2;
-  left: clamp(1.5rem, 3vw, 2.5rem);
-  bottom: clamp(1.8rem, 5vw, 3rem);
-  width: clamp(56px, 7vw, 72px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: 1px solid var(--faint);
-  color: var(--faint);
-  display: grid;
-  place-items: center;
-  font-family: var(--latin);
-  font-variation-settings: "wdth" 90, "wght" 500;
-  font-size: clamp(1.1rem, 2.4vw, 1.4rem);
-  letter-spacing: 0.02em;
-}
-@media (max-width: 719px) {
-  .roundel {
-    display: none;
-  }
-}
-
-.heroMark {
-  position: absolute;
-  z-index: 2;
-  right: clamp(1.5rem, 3vw, 2.5rem);
-  bottom: clamp(1.8rem, 5vw, 3rem);
-  font-family: var(--latin);
-  font-variation-settings: "wdth" 80, "wght" 500;
-  font-size: 0.7rem;
-  letter-spacing: 0.28em;
-  color: var(--faint);
+  background: linear-gradient(180deg, rgba(11, 9, 6, 0.32) 0%, rgba(11, 9, 6, 0.18) 30%, rgba(11, 9, 6, 0.4) 100%),
+    radial-gradient(ellipse at 50% 50%, rgba(11, 9, 6, 0) 45%, rgba(11, 9, 6, 0.38) 100%);
 }
 
 /* ---------- 見出し ---------- */
