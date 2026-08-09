@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+# Stripe CLI binary (ダウンロードして各自のローカルに置く開発ツールのため)
+/stripe.exe
+
 # debug
 npm-debug.log*
 yarn-debug.log*

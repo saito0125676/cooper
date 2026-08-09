@@ -4,6 +4,7 @@ import {
   Prisma,
   ReservationStatus,
   PaymentStatus,
+  RefundStatus,
 } from "@/app/generated/prisma/client";
 
 export type ProcessEventResult = "processed" | "duplicate";
@@ -68,6 +69,12 @@ export async function handleStripeEvent(
     case "payment_intent.payment_failed": {
       const intent = event.data.object as Stripe.PaymentIntent;
       await markPaymentFailed(tx, intent.metadata?.reservationId);
+      return;
+    }
+    case "refund.created":
+    case "refund.updated":
+    case "refund.failed": {
+      await syncRefundStatus(tx, event.data.object as Stripe.Refund);
       return;
     }
     default:
@@ -168,5 +175,56 @@ export async function markPaymentFailed(
   await tx.reservation.updateMany({
     where: { id: reservationId },
     data: { paymentStatus: PaymentStatus.failed },
+  });
+}
+
+function reservationIdFromRefund(refund: Stripe.Refund): string | undefined {
+  return refund.metadata?.reservationId;
+}
+
+/**
+ * Stripeの返金ステータス(pending/requires_action/succeeded/failed/canceled)を
+ * こちらのRefundStatus enumに写像する。requires_actionはまだ確定していないのでpending扱い、
+ * canceledは返金が成立しなかったという点でfailedと同様に扱う。
+ */
+function mapStripeRefundStatus(status: Stripe.Refund["status"]): RefundStatus {
+  switch (status) {
+    case "succeeded":
+      return RefundStatus.succeeded;
+    case "failed":
+    case "canceled":
+      return RefundStatus.failed;
+    default:
+      return RefundStatus.pending;
+  }
+}
+
+/**
+ * refund.created / refund.updated / refund.failed の共通ハンドラ。
+ * 返金が成立した場合(succeeded)のみ予約をcancelledに遷移させる。
+ * 失敗・保留中はrefundStatusのみ更新し、予約自体はconfirmed/paidのまま残す
+ * (要調査・手動対応の余地を残すため、勝手にキャンセル扱いにはしない)。
+ */
+export async function syncRefundStatus(
+  tx: Prisma.TransactionClient,
+  refund: Stripe.Refund
+) {
+  const reservationId = reservationIdFromRefund(refund);
+  if (!reservationId) {
+    console.error("[webhook] refund has no reservationId", refund.id);
+    return;
+  }
+
+  const refundStatus = mapStripeRefundStatus(refund.status);
+
+  await tx.reservation.updateMany({
+    where: { id: reservationId },
+    data: {
+      refundStatus,
+      stripeRefundId: refund.id,
+      ...(refundStatus === RefundStatus.succeeded
+        ? { status: ReservationStatus.cancelled, cancelledAt: new Date() }
+        : {}),
+    },
   });
 }

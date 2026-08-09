@@ -28,6 +28,13 @@ enum PaymentStatus {
   failed
 }
 
+enum RefundStatus {
+  none
+  pending
+  succeeded
+  failed
+}
+
 model Reservation {
   id              String            @id @default(cuid())
   // レンタル日(1日単位の予約なので日付のみを保持する)
@@ -59,10 +66,17 @@ model Reservation {
   // 仮押さえを開始した時刻。ここから15分でタイムアウトする基準になる
   holdStartedAt DateTime?
 
+  // 決済確定後(paymentStatus: paid)のキャンセル・返金に関する情報
+  cancelledAt        DateTime?
+  cancellationReason String?
+  refundStatus       RefundStatus @default(none)
+  refundAmount       Int? // 円単位。0も許容(直前キャンセルで返金なしの記録用)
+
   // Stripeとの突合・冪等性確保のためのキー
   idempotencyKey          String  @unique @default(cuid())
   stripeCheckoutSessionId String? @unique
   stripePaymentIntentId   String? @unique
+  stripeRefundId          String? @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
