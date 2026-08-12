@@ -4,9 +4,11 @@ import { useCallback, useState } from "react";
 import styles from "./BookingWidget.module.css";
 import ReservationCalendar from "./ReservationCalendar";
 import CustomerInfoForm from "./CustomerInfoForm";
+import CarSelect from "./CarSelect";
 import type { CustomerInfoInput } from "@/lib/customerInfo";
+import { CARS, type CarOption } from "@/lib/cars";
 
-type Step = "date" | "customer";
+type Step = "car" | "date" | "customer";
 
 function todayStr(): string {
   const now = new Date();
@@ -16,7 +18,8 @@ function todayStr(): string {
 }
 
 export default function BookingWidget() {
-  const [step, setStep] = useState<Step>("date");
+  const [step, setStep] = useState<Step>("car");
+  const [selectedCarId, setSelectedCarId] = useState<string | null>(null);
   const [date, setDate] = useState(todayStr());
   const [remaining, setRemaining] = useState<number | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -49,13 +52,34 @@ export default function BookingWidget() {
   // POST /api/reservations 側でも行われるため、ここで弾くのはUXの都合のみ。
   const canProceed = !soldOut;
 
+  const selectedCar: CarOption | undefined = CARS.find((c) => c.id === selectedCarId);
+
+  function handleCarSelect(car: CarOption) {
+    setSelectedCarId(car.id);
+    setStep("date");
+  }
+
+  if (step === "car") {
+    return (
+      <div className={styles.widget}>
+        <CarSelect selectedId={selectedCarId} onSelect={handleCarSelect} />
+      </div>
+    );
+  }
+
   if (step === "customer") {
     return (
       <div className={styles.widget}>
         <div className={styles.formHeader}>
-          <span className={styles.eyebrow}>RESERVATION · STEP 2</span>
+          <span className={styles.eyebrow}>RESERVATION · STEP 3</span>
           <h2 className={styles.widgetTitle}>予約者情報の入力</h2>
           <p className={styles.formSub}>
+            {selectedCar && (
+              <>
+                車種: <strong>{selectedCar.name}</strong>
+                <br />
+              </>
+            )}
             レンタル日: <strong>{date}</strong>
           </p>
         </div>
@@ -71,6 +95,18 @@ export default function BookingWidget() {
 
   return (
     <div className={styles.widget}>
+      <div className={styles.formHeader}>
+        <span className={styles.eyebrow}>RESERVATION · STEP 2</span>
+        {selectedCar && (
+          <p className={styles.formSub}>
+            車種: <strong>{selectedCar.name}</strong>{" "}
+            <button type="button" className={styles.changeCarLink} onClick={() => setStep("car")}>
+              車種を変更する
+            </button>
+          </p>
+        )}
+      </div>
+
       <ReservationCalendar
         selectedDate={date}
         onSelect={setDate}

@@ -1,0 +1,119 @@
+.wrap {
+  width: 100%;
+}
+
+.eyebrow {
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 68, "wght" 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 1.2rem;
+}
+
+.title {
+  font-family: var(--jp-display);
+  font-size: clamp(1.35rem, 2.6vw, 1.7rem);
+  color: var(--ink);
+  font-weight: 400;
+  line-height: 1.4;
+  margin-bottom: 1.8rem;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2.4rem;
+}
+
+.card {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.4rem;
+}
+
+.imageBox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: rgba(237, 231, 217, 0.06);
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.disclaimer {
+  margin-top: 0.6rem;
+  font-size: 0.72rem;
+  color: var(--faint);
+}
+
+.carEn {
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 66, "wght" 500;
+  font-size: 0.68rem;
+  letter-spacing: 0.26em;
+  color: var(--accent);
+  display: block;
+  margin-top: 1.2rem;
+}
+
+.carName {
+  font-family: var(--jp-display);
+  font-size: 1.2rem;
+  color: var(--ink);
+  font-weight: 400;
+  margin-top: 0.4rem;
+}
+
+.carDesc {
+  font-size: 0.86rem;
+  color: var(--muted);
+  margin-top: 0.8rem;
+}
+
+.spec {
+  list-style: none;
+  margin: 1.2rem 0 0;
+  padding: 0;
+  font-size: 0.82rem;
+}
+
+.spec li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--muted);
+}
+
+.spec .v {
+  font-family: var(--latin);
+  font-variation-settings: "wdth" 80, "wght" 500;
+  color: var(--ink);
+}
+
+.selectButton {
+  display: block;
+  width: 100%;
+  margin-top: 1.4rem;
+  padding: 1rem 1.4rem;
+  font-family: var(--jp);
+  font-size: 0.88rem;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid rgba(237, 231, 217, 0.5);
+  transition: 0.25s ease;
+}
+
+.selectButton:hover {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
